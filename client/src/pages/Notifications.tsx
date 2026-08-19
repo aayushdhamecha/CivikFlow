@@ -1,0 +1,13 @@
+import { Bell, CheckCheck, ClipboardList } from "lucide-react";
+import { Link } from "wouter";
+import { CitizenLayout } from "@/components/civic/CitizenLayout";
+import { Button } from "@/components/ui/button";
+import { trpc } from "@/lib/trpc";
+
+export default function Notifications() {
+  const notifications = trpc.civic.notifications.list.useQuery();
+  const markRead = trpc.civic.notifications.markRead.useMutation();
+  const utils = trpc.useUtils();
+  async function mark(id: number) { await markRead.mutateAsync({ id }); utils.civic.notifications.list.invalidate(); }
+  return <CitizenLayout><main className="mx-auto max-w-3xl px-4 pb-24 pt-7 sm:px-6"><p className="text-sm font-bold uppercase tracking-[.14em] text-emerald-700">Civic updates</p><h1 className="mt-1 text-3xl font-bold tracking-tight">Notifications</h1><p className="mt-2 text-slate-600">Status changes and requests related to your reports appear here.</p>{notifications.isLoading ? <div className="mt-6 h-28 animate-pulse rounded-2xl bg-slate-200" /> : notifications.data?.length ? <section className="mt-6 divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200 bg-white">{notifications.data.map(item => <article key={item.id} className={`p-5 ${!item.readAt ? "bg-emerald-50/40" : ""}`}><div className="flex items-start gap-3"><span className={`mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full ${item.readAt ? "bg-slate-100 text-slate-500" : "bg-emerald-100 text-emerald-700"}`}><Bell className="h-4 w-4" /></span><div className="min-w-0 flex-1"><div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between"><div><h2 className="font-bold">{item.title}</h2><p className="mt-1 text-sm leading-6 text-slate-600">{item.message}</p></div>{!item.readAt && <Button variant="ghost" size="sm" onClick={() => mark(item.id)} disabled={markRead.isPending} className="shrink-0 text-emerald-700"><CheckCheck className="mr-1 h-4 w-4" />Read</Button>}</div><p className="mt-2 text-xs text-slate-400">{new Date(item.createdAt).toLocaleString()}</p>{item.complaintId ? <Link href="/complaints" className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-emerald-700">View my reports <ClipboardList className="h-4 w-4" /></Link> : null}</div></div></article>)}</section> : <section className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center"><Bell className="mx-auto h-8 w-8 text-slate-400" /><h2 className="mt-3 font-bold">You’re all caught up</h2><p className="mt-1 text-sm text-slate-600">Updates about your civic reports will appear here.</p></section>}</main></CitizenLayout>;
+}

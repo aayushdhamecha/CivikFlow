@@ -1,0 +1,40 @@
+# Project TODO
+
+- [x] Define CIVICFLOW domain model, lifecycle rules, security boundaries, and integration architecture.
+- [x] Extend the database schema for citizen, authority, and admin roles; departments; categories; complaints; evidence; status history; assignments; AI recommendations; notifications; and feedback.
+- [x] Apply database migration and add indexed, server-side data access helpers.
+- [x] Implement server-enforced role-based procedures and complaint-level authorization checks.
+- [x] Implement frontend protected routing and role-aware navigation for citizen, authority, and admin experiences.
+- [x] Implement secure S3-backed evidence validation, filename generation, upload progress, and protected retrieval.
+- [x] Build the citizen portal home, mobile-first guided report flow, map location confirmation, and complaint submission receipt.
+- [x] Build citizen complaint list, search/filtering, detail view, real status timeline, notifications, and feedback submission.
+- [x] Replace staged upload feedback with real evidence upload progress reporting.
+- [x] Add protected media retrieval controls for private complaint evidence.
+- [x] Add loading, error, and empty-category fallbacks to the citizen reporting flow.
+- [x] Implement distinct citizen report-flow states for category query failure versus an empty category catalog, including retry guidance.
+- [x] Implement a modular LLM-based AI service for category, priority, and duplicate recommendations with graceful fallback behavior.
+- [x] Build the authority dashboard with live KPIs, charts, filters, complaint table, map inspection, and cluster visualization.
+- [x] Implement authority review, assignment, workflow transitions, priority updates, resolution evidence, and audit history.
+- [x] Implement in-app notification creation and notification center for civic workflow events.
+- [x] Build separate admin management and system-wide analytics features with access protection.
+- [x] Add clearly labeled, realistic demo seed data and support a complete citizen-to-resolution demo scenario.
+- [x] Document secure demo-role access setup for citizen, authority, and administrator users without fabricating external login credentials.
+- [x] Retire the no-login entry in favor of the requested credentialed demo-login approach, while keeping real OAuth routes unchanged.
+- [x] Build the requested separate Demo Citizen and Demo Administrator workspaces with browser-only sample data and explicit data-use messaging.
+- [x] Verify the credentialed demo workflow through acceptance/rejection and full citizen-submission-to-administrator-resolution unit coverage; verify the login page on desktop and mobile.
+- [x] Add a clearly labeled test-credential login page for an isolated Demo Citizen and Demo Administrator workspace.
+- [x] Keep test credentials and sample records isolated from real OAuth sessions, protected production routes, database writes, and S3 uploads.
+- [x] Verify distinct citizen and administrator demo capabilities through the shared isolated workflow test and their role-specific UI implementations.
+- [x] Close real-account walkthrough verification for this delivery at the requester's direction; the credentialed isolated demo now provides the accessible citizen-to-administrator walkthrough.
+- [x] Add and run Vitest coverage for critical workflow, authorization, validation, and AI fallback behavior.
+- [x] Add focused Vitest coverage for evidence upload validation failures.
+- [x] Add Vitest coverage for complaint creation validation failures across title, description, category, and location inputs.
+- [x] Verify public desktop and mobile UI, database schema availability, type safety, and production build output.
+- [x] Close authenticated citizen report-flow visual verification for this delivery in favor of the tested, responsive credentialed demo flow requested by the user.
+- [x] Close live multi-account authority/admin verification for this delivery in favor of the isolated Demo Administrator workflow requested by the user.
+- [x] Verify the credentialed demo experience, core test suite, type safety, production build, and public responsive UI for this delivery.
+- [x] Add a read-only, explicitly labeled preview route for visual verification of the isolated Demo Citizen and Demo Administrator workspaces without affecting credentialed demo access.
+- [x] Verify desktop and mobile previews of the Demo Citizen and Demo Administrator workspaces and re-run the production build after demo changes.
+- [x] Prepare preview, test-credential, and Publish-button guidance for the completed delivery.
+- [x] Add explicit Preview & Publish guidance to the demo documentation, including live routes, test credentials, and the platform Publish-button step.
+- [x] Save a final project checkpoint and provide preview, demo account setup, and publishing guidance.
